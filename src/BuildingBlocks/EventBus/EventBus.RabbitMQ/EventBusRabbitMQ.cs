@@ -25,6 +25,8 @@ namespace EventBus.RabbitMQ
                 });
 
                 connectionFactory = JsonConvert.DeserializeObject<ConnectionFactory>(connJson);
+
+                connectionFactory = new ConnectionFactory();
             }
             else
             {
@@ -91,6 +93,10 @@ namespace EventBus.RabbitMQ
                     exclusive: false,
                     autoDelete: false,
                     arguments: null);
+
+                consumerChannel.QueueBind(queue: GetSubName(eventName),
+                    exchange: EventBusConfig.DefaultTopicName,
+                    routingKey: eventName);
 
                 consumerChannel.BasicPublish(
                     exchange: EventBusConfig.DefaultTopicName,

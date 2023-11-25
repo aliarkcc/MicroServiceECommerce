@@ -15,4 +15,9 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\EventBus\EventBus.Base\EventBus.Base.csproj" />
+    <ProjectReference Include="..\..\..\EventBus\EventBus.Factory\EventBus.Factory.csproj" />
+  </ItemGroup>
+
 </Project>
