@@ -2,6 +2,7 @@
 using CatalogService.Api.Core.Domain;
 using CatalogService.Api.Infrastructure.Context;
 using CatalogService.Api.Infrastructure.Setup;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

@@ -4,7 +4,7 @@ using CatalogService.Api.Infrastructure.Setup;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
-    WebRootPath="Pics"
+    WebRootPath = "Pics"
 });
 
 builder.Services.Configure<CatalogSettings>(builder.Configuration.GetSection("CatalogSettings"));
@@ -12,6 +12,8 @@ builder.Services.ConfigureDbContext(builder.Configuration);
 builder.Host.UseContentRoot(Directory.GetCurrentDirectory());
 
 // Add services to the container.
+builder.Services.ConfigureConsul(builder.Configuration);
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -36,11 +38,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.RegisterWithConsul(app.Lifetime);
 
 app.Run();
