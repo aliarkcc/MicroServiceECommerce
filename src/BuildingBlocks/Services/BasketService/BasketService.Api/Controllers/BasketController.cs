@@ -105,7 +105,7 @@ namespace BasketService.Api.Controllers
             return Accepted();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
         public async Task DeleteBasketByIdAsync(string id)
         {
